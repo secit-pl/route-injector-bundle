@@ -1,0 +1,25 @@
+services:
+    secit.route_injector.metadata.annotation_driver:
+        class: SecIT\RouteInjectorBundle\Metadata\Driver\AnnotationDriver
+        arguments: ['@annotation_reader']
+
+    secit.route_injector.metadata.cache:
+        class: Metadata\Cache\FileCache
+        arguments: # set in SecIT\RouteInjectorBundle\DependencyInjection\RouteAnnotationExtension
+
+    secit.route_injector.metadata_factory:
+        class: Metadata\MetadataFactory
+        arguments: ['@secit.route_injector.metadata.annotation_driver']
+        calls:
+            - ['setCache', ['@secit.route_injector.metadata.cache']]
+
+    secit.route_injector.processor:
+        class: SecIT\RouteInjectorBundle\Data\RouteProcessor
+        arguments: ['@secit.route_injector.metadata_factory', '@router']
+
+    secit.route_injector.route_injector_subscriber:
+        class: SecIT\RouteInjectorBundle\EventListener\RouteInjectorSubscriber
+        calls:
+            - ['setProcessor', ['@secit.route_injector.processor']]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
