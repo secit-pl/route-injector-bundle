@@ -217,6 +217,8 @@ values should be taken.
 @InjectRoute("route_name", parametersMapping={"param": "publicGetterMethodName"});
 ```
 
+**Warning!** The route will not be injected if any of the parameters will be null.
+
 ##### absolute = bool, default false
 Set to true if you'd like to have the generated URLs with the protocol and hostname prefix.
 

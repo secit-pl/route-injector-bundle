@@ -177,7 +177,9 @@ class PropertyMetadata extends BasePropertyMetadata
      */
     public function isInjectable($object)
     {
-        return $this->getRoute() && (!$this->getValue($object) || $this->injectIfNotEmpty());
+        return $this->getRoute() &&
+            (!$this->getValue($object) || $this->injectIfNotEmpty()) &&
+            !$this->hasNullParameter($object);
     }
 
     /**
@@ -197,5 +199,17 @@ class PropertyMetadata extends BasePropertyMetadata
         }
 
         return $parameters;
+    }
+
+    /**
+     * Check if any of the route parameters is null.
+     *
+     * @param object $object
+     *
+     * @return bool
+     */
+    protected function hasNullParameter($object)
+    {
+        return in_array(null, $this->getParameters($object), true);
     }
 }
