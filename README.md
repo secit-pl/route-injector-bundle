@@ -228,7 +228,7 @@ Set to true if you'd like to have the generated URLs with the protocol and hostn
 
 ##### injectIfNotEmpty = bool, default false
 By default the route will be injected only if the current value is empty (null, false, or the empty string).
-To make it updatable event it it's not empty set this option to true.
+To make it updatable even if it's not empty set this option to true.
 
 ```php
 @InjectRoute("route_name", injectIfNotEmpty=true);
