@@ -35,6 +35,7 @@ class RouteInjectorSubscriber implements EventSubscriber
     {
         return [
             'postLoad',
+            'postPersist',
             'prePersist',
             'preUpdate',
         ];
@@ -46,6 +47,16 @@ class RouteInjectorSubscriber implements EventSubscriber
      * @param LifecycleEventArgs $args
      */
     public function postLoad(LifecycleEventArgs $args)
+    {
+        $this->inject($args);
+    }
+
+    /**
+     * Post persist.
+     *
+     * @param LifecycleEventArgs $args
+     */
+    public function postPersist(LifecycleEventArgs $args)
     {
         $this->inject($args);
     }
