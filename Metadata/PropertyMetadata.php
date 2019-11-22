@@ -40,6 +40,48 @@ class PropertyMetadata extends BasePropertyMetadata
     protected $injectIfNotEmpty = false;
 
     /**
+     * @var \ReflectionProperty
+     */
+    private $reflection;
+
+    /**
+     * PropertyMetadata constructor.
+     *
+     * @param string $class
+     * @param string $name
+     */
+    public function __construct(string $class, string $name)
+    {
+        parent::__construct($class, $name);
+
+        $this->reflection = new \ReflectionProperty($class, $name);
+        $this->reflection->setAccessible(true);
+    }
+
+    /**
+     * Get value.
+     *
+     * @param mixed $obj
+     *
+     * @return mixed
+     */
+    public function getValue($object)
+    {
+        return $this->reflection->getValue($object);
+    }
+
+    /**
+     * Get value.
+     *
+     * @param mixed $obj
+     * @param mixed $value
+     */
+    public function setValue($object, $value)
+    {
+        $this->reflection->setValue($object, $value);
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function serialize()
