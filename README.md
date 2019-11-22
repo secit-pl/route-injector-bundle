@@ -1,7 +1,8 @@
 # Route injector annotation
 
-Route injector annotation for Symfony 2.8 and 3.0+.
+Route injector annotation for Symfony 4.0+.
 
+For Symfony 2.8 and 3.x please use the 1.x releases.
 
 
 ## Installation
@@ -10,23 +11,6 @@ From the command line run
 
 ```
 $ composer require secit-pl/route-injector-bundle
-```
-
-Update your AppKernel by adding the bundle declaration
-
-```php
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        $bundles = [
-            ...
-            new SecIT\RouteInjectorBundle\RouteInjectorBundle(),
-        ];
-
-        ...
-    }
-}
 ```
 
 ## Usage
