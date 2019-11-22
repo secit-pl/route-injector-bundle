@@ -3,6 +3,7 @@
 namespace SecIT\RouteInjectorBundle\Metadata\Driver;
 
 use Doctrine\Common\Annotations\Reader;
+use Metadata\ClassMetadata;
 use Metadata\Driver\DriverInterface;
 use Metadata\MergeableClassMetadata;
 use SecIT\RouteInjectorBundle\Metadata\PropertyMetadata;
